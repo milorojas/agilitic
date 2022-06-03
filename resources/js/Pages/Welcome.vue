@@ -155,11 +155,11 @@ defineProps({
                         </div>
                     </div>
                     <div class="hidden md:flex md:items-center md:space-x-6">
-                        <a
+                        <!--<a
                             href="#"
                             class="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700">
                             Ingresar
-                        </a>
+                        </a>-->
                     </div>
                 </nav>
             </div>
@@ -464,7 +464,7 @@ defineProps({
                     class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
                     <img
                         class="max-h-24 grayscale"
-                        src="/corpo.png"
+                        src="/corpo.jpg"
                         alt="Corporacion renca" />
                 </div>
                 <div
@@ -590,6 +590,7 @@ defineProps({
                         <div>
                             <button
                                 type="submit"
+                                disabled
                                 class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                 Enviar
                             </button>
