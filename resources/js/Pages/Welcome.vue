@@ -1,188 +1,628 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import { defineComponent, h } from "vue";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import {
+    MenuIcon,
+    XIcon,
+    GlobeAltIcon,
+    LightningBoltIcon,
+    MailIcon,
+    BeakerIcon,
+    DatabaseIcon,
+    ScaleIcon,
+    TerminalIcon,
+    ChartPieIcon,
+} from "@heroicons/vue/outline";
+import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/vue/solid";
+
+const navigation = [
+    { name: "Quienes somos", href: "#" },
+    { name: "Que hacemos", href: "#" },
+    { name: "Contacto", href: "#" },
+];
+
+const features = [
+    {
+        name: "Desarrollo de Software",
+        description:
+            "Utilizamos los últimos frameworks de desarrollo, aplicando sobre ellos las mejores prácticas en desarrollo de software.",
+        icon: TerminalIcon,
+    },
+    {
+        name: "Integración de Datos",
+        description:
+            "Contamos con basta experiencia en integración de datos, utilizando herramientas opensource y de pago.",
+        icon: ChartPieIcon,
+    },
+    {
+        name: "Business Intelligence",
+        description:
+            "Generamos estructuras de datos ideales para encontrar el valor agregado de tus datos y mejorar la toma de decisiones en su operación.",
+        icon: DatabaseIcon,
+    },
+    {
+        name: "Data Science",
+        description:
+            "Te ayudaremos a buscar mejoras en tu operación aplicando distintas herramientas y metodologías Machine Learning y Deep Learning.",
+        icon: BeakerIcon,
+    },
+];
+
+const social = [
+    {
+        name: "Facebook",
+        href: "#",
+        icon: defineComponent({
+            render: () =>
+                h("svg", { fill: "currentColor", viewBox: "0 0 24 24" }, [
+                    h("path", {
+                        "fill-rule": "evenodd",
+                        d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+                        "clip-rule": "evenodd",
+                    }),
+                ]),
+        }),
+    },
+    {
+        name: "Instagram",
+        href: "#",
+        icon: defineComponent({
+            render: () =>
+                h("svg", { fill: "currentColor", viewBox: "0 0 24 24" }, [
+                    h("path", {
+                        "fill-rule": "evenodd",
+                        d: "M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z",
+                        "clip-rule": "evenodd",
+                    }),
+                ]),
+        }),
+    },
+    {
+        name: "Twitter",
+        href: "#",
+        icon: defineComponent({
+            render: () =>
+                h("svg", { fill: "currentColor", viewBox: "0 0 24 24" }, [
+                    h("path", {
+                        d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84",
+                    }),
+                ]),
+        }),
+    },
+    {
+        name: "GitHub",
+        href: "#",
+        icon: defineComponent({
+            render: () =>
+                h("svg", { fill: "currentColor", viewBox: "0 0 24 24" }, [
+                    h("path", {
+                        "fill-rule": "evenodd",
+                        d: "M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z",
+                        "clip-rule": "evenodd",
+                    }),
+                ]),
+        }),
+    },
+];
 
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-})
+});
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Agilitic" />
 
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
-                Dashboard
-            </Link>
+    <!-- Hero -->
+    <div class="relative overflow-hidden">
+        <Popover as="header" class="relative">
+            <div class="bg-gray-900 pt-6">
+                <nav
+                    class="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6"
+                    aria-label="Global">
+                    <div class="flex flex-1 items-center">
+                        <div
+                            class="flex w-full items-center justify-between md:w-auto">
+                            <a href="#">
+                                <span class="sr-only">Agilitic</span>
+                                <img
+                                    class="h-14 w-auto sm:h-14"
+                                    src="/agilitic.png"
+                                    alt="" />
+                            </a>
+                            <div class="-mr-2 flex items-center md:hidden">
+                                <PopoverButton
+                                    class="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                                    <span class="sr-only">Open main menu</span>
+                                    <MenuIcon
+                                        class="h-6 w-6"
+                                        aria-hidden="true" />
+                                </PopoverButton>
+                            </div>
+                        </div>
+                        <div class="hidden space-x-8 md:ml-10 md:flex">
+                            <a
+                                v-for="item in navigation"
+                                :key="item.name"
+                                :href="item.href"
+                                class="text-base font-medium text-white hover:text-gray-300"
+                                >{{ item.name }}</a
+                            >
+                        </div>
+                    </div>
+                    <div class="hidden md:flex md:items-center md:space-x-6">
+                        <a
+                            href="#"
+                            class="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700">
+                            Ingresar
+                        </a>
+                    </div>
+                </nav>
+            </div>
 
-            <template v-else>
-                <Link :href="route('login')" class="text-sm text-gray-700 underline">
-                    Log in
-                </Link>
+            <transition
+                enter-active-class="duration-150 ease-out"
+                enter-from-class="opacity-0 scale-95"
+                enter-to-class="opacity-100 scale-100"
+                leave-active-class="duration-100 ease-in"
+                leave-from-class="opacity-100 scale-100"
+                leave-to-class="opacity-0 scale-95">
+                <PopoverPanel
+                    focus
+                    class="absolute inset-x-0 top-0 z-10 origin-top transform p-2 transition md:hidden">
+                    <div
+                        class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+                        <div
+                            class="flex items-center justify-between px-5 pt-4">
+                            <div>
+                                <img
+                                    class="h-8 w-auto"
+                                    src="/agilitic.png"
+                                    alt="" />
+                            </div>
+                            <div class="-mr-2">
+                                <PopoverButton
+                                    class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600">
+                                    <span class="sr-only">Close menu</span>
+                                    <XIcon class="h-6 w-6" aria-hidden="true" />
+                                </PopoverButton>
+                            </div>
+                        </div>
+                        <div class="pt-5 pb-6">
+                            <div class="space-y-1 px-2">
+                                <a
+                                    v-for="item in navigation"
+                                    :key="item.name"
+                                    :href="item.href"
+                                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                                    >{{ item.name }}</a
+                                >
+                            </div>
+                            <div class="mt-6 px-5">
+                                <a
+                                    href="#"
+                                    class="block w-full rounded-md bg-indigo-600 py-3 px-4 text-center font-medium text-white shadow hover:bg-indigo-700"
+                                    >Start free trial</a
+                                >
+                            </div>
+                            <div class="mt-6 px-5">
+                                <p
+                                    class="text-center text-base font-medium text-gray-500">
+                                    Existing customer?
+                                    <a
+                                        href="#"
+                                        class="text-gray-900 hover:underline"
+                                        >Login</a
+                                    >
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </PopoverPanel>
+            </transition>
+        </Popover>
 
-                <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
-                    Register
-                </Link>
-            </template>
+        <main>
+            <div
+                class="bg-gray-900 pt-10 sm:pt-16 lg:overflow-hidden lg:pt-8 lg:pb-14">
+                <div class="mx-auto max-w-7xl lg:px-8">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+                        <div
+                            class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
+                            <div class="lg:py-24">
+                                <!--
+                                    <a
+                                    href="#"
+                                    class="inline-flex items-center rounded-full bg-black p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
+                                    <span
+                                        class="rounded-full bg-indigo-500 px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white"
+                                        >Estamos buscando profesionales</span
+                                    >
+                                    <span class="ml-4 text-sm"
+                                        >Visita nuestro sitio de empleos</span
+                                    >
+                                    <ChevronRightIcon
+                                        class="ml-2 h-5 w-5 text-gray-500"
+                                        aria-hidden="true" />
+                                </a>-->
+                                <h1
+                                    class="mt-4 text-4xl font-extrabold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                                    <span class="block">Transformación</span>
+                                    <span class="block text-indigo-400"
+                                        >Digital</span
+                                    >
+                                </h1>
+                                <p
+                                    class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                                    Potencia tu negocio a través de los datos,
+                                    te apoyamos en el desarrollo de soluciones
+                                    analíticas y software que permitan optimizar
+                                    procesos y disminuir costos a través de la
+                                    automatización de tareas y toma de
+                                    decisiones inteligentes sustentadas por tus
+                                    datos.
+                                </p>
+                                <div class="mt-10 sm:mt-12">
+                                    <form
+                                        action="#"
+                                        class="sm:mx-auto sm:max-w-xl lg:mx-0">
+                                        <div class="sm:flex">
+                                            <div class="min-w-0 flex-1">
+                                                <label
+                                                    for="email"
+                                                    class="sr-only"
+                                                    >Correo electrónico</label
+                                                >
+                                                <input
+                                                    id="email"
+                                                    type="email"
+                                                    placeholder="Ingresa tu email"
+                                                    class="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-gray-900" />
+                                            </div>
+                                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                                <button
+                                                    type="submit"
+                                                    class="block w-full rounded-md bg-indigo-500 py-3 px-4 font-medium text-white shadow hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-gray-900">
+                                                    Enviar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p
+                                            class="mt-3 text-sm text-gray-300 sm:mt-4">
+                                            Si estas interesado en algunos de
+                                            nuestros servicios, dejanos tu
+                                            correo.
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0">
+                            <div
+                                class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                                <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
+                                <img
+                                    class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                                    src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg"
+                                    alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More main page content here... -->
+        </main>
+    </div>
+
+    <!-- About us -->
+    <div class="relative bg-gray-800">
+        <div
+            class="h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+            <img
+                class="h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=6366F1&sat=-100&blend-mode=multiply"
+                alt="" />
         </div>
-
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                    <g clip-path="url(#clip0)" fill="#EF3B2D">
-                        <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                    </g>
-                </svg>
-            </div>
-
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                <div class="text-center text-sm text-gray-500 sm:text-left">
-                    <div class="flex items-center">
-                        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-
-                        <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                            Shop
-                        </a>
-
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-
-                        <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                            Sponsor
+        <div
+            class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="md:ml-auto md:w-1/2 md:pl-10">
+                <h2
+                    class="text-base font-semibold uppercase tracking-wider text-gray-300">
+                    Quienes somos
+                </h2>
+                <p
+                    class="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    Somos una empresa joven.
+                </p>
+                <p class="mt-3 text-lg text-gray-300">
+                    Nuestro equipo está compuesto por profesionales jovenes,
+                    expertos en cada una de sus áreas de conocimiento.
+                </p>
+                <p
+                    class="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    Nuestro objetivo
+                </p>
+                <p class="mt-3 text-lg text-gray-300">
+                    Ayudar a compañias de distinto rubro a mejorar la toma de
+                    decisiones explorando y explotando su información, así como
+                    también contribuimos en la mejora y optimización de procesos
+                    por medio de distintas tecnologías.
+                </p>
+                <div class="mt-8">
+                    <div class="inline-flex rounded-md shadow">
+                        <a
+                            href="#"
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-gray-900 hover:bg-gray-50">
+                            Contactanos
+                            <ExternalLinkIcon
+                                class="-mr-1 ml-3 h-5 w-5 text-gray-400"
+                                aria-hidden="true" />
                         </a>
                     </div>
-                </div>
-
-                <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                    Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Features -->
+    <div class="overflow-hidden bg-gray-50">
+        <div class="relative mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+            <svg
+                class="absolute top-0 left-full -translate-x-1/2 -translate-y-3/4 transform lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
+                width="404"
+                height="784"
+                fill="none"
+                viewBox="0 0 404 784"
+                aria-hidden="true">
+                <defs>
+                    <pattern
+                        id="8b1b5f72-e944-4457-af67-0c6d15a99f38"
+                        x="0"
+                        y="0"
+                        width="20"
+                        height="20"
+                        patternUnits="userSpaceOnUse">
+                        <rect
+                            x="0"
+                            y="0"
+                            width="4"
+                            height="4"
+                            class="text-gray-200"
+                            fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect
+                    width="404"
+                    height="784"
+                    fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
+            </svg>
+
+            <div class="relative lg:grid lg:grid-cols-3 lg:gap-x-8">
+                <div class="lg:col-span-1">
+                    <h2
+                        class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        ¿Que hacemos?
+                    </h2>
+                </div>
+                <dl
+                    class="mt-10 space-y-10 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:space-y-0 lg:col-span-2 lg:mt-0">
+                    <div v-for="feature in features" :key="feature.name">
+                        <dt>
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500 text-white">
+                                <component
+                                    :is="feature.icon"
+                                    class="h-6 w-6"
+                                    aria-hidden="true" />
+                            </div>
+                            <p
+                                class="mt-5 text-lg font-medium leading-6 text-gray-900">
+                                {{ feature.name }}
+                            </p>
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            {{ feature.description }}
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logos -->
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <p
+                class="text-center text-base font-semibold uppercase tracking-wider text-gray-600">
+                Quienes confían en nosotros
+            </p>
+            <div class="mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8">
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img
+                        class="max-h-24 grayscale"
+                        src="/rc.png"
+                        alt="Redcapital" />
+                </div>
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img
+                        class="max-h-24 grayscale"
+                        src="/renca.png"
+                        alt="Renca" />
+                </div>
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img class="max-h-24 grayscale" src="vets.png" alt="Vets" />
+                </div>
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img
+                        class="max-h-24 grayscale"
+                        src="/corpo.png"
+                        alt="Corporacion renca" />
+                </div>
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img
+                        class="max-h-24 grayscale"
+                        src="/daily.png"
+                        alt="Dailyfresh" />
+                </div>
+                <div
+                    class="col-span-1 flex justify-center bg-gray-50 py-8 px-8">
+                    <img
+                        class="max-h-24 grayscale"
+                        src="/gimo.png"
+                        alt="Gimo" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="relative bg-gray-50">
+        <div class="absolute inset-0">
+            <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
+        </div>
+        <div class="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5">
+            <div
+                class="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                <div class="mx-auto max-w-lg">
+                    <h2
+                        class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+                        Contactanos
+                    </h2>
+                    <p class="mt-3 text-lg leading-6 text-gray-500">
+                        Si tienes alguna idea en mente, o necesitas que te
+                        asesoremos, escribenos y nuestro equipo se pondra en
+                        contacto contigo
+                    </p>
+                    <dl class="mt-8 text-base text-gray-500">
+                        <div>
+                            <dt class="sr-only">Postal address</dt>
+                            <dd>
+                                <p>Guardia Vieja 202</p>
+                                <p>Providencia, Santiago</p>
+                            </dd>
+                        </div>
+                        <div class="mt-6">
+                            <dt class="sr-only">Phone number</dt>
+                            <dd class="flex">
+                                <PhoneIcon
+                                    class="h-6 w-6 flex-shrink-0 text-gray-400"
+                                    aria-hidden="true" />
+                                <span class="ml-3"> +569 508 40 507 </span>
+                            </dd>
+                        </div>
+                        <div class="mt-3">
+                            <dt class="sr-only">Email</dt>
+                            <dd class="flex">
+                                <MailIcon
+                                    class="h-6 w-6 flex-shrink-0 text-gray-400"
+                                    aria-hidden="true" />
+                                <span class="ml-3"> contacto@agilitic.cl </span>
+                            </dd>
+                        </div>
+                    </dl>
+                    <!--<p class="mt-6 text-base text-gray-500">
+                        Buscas alguna ?
+                        {{ " " }}
+                        <a href="#" class="font-medium text-gray-700 underline"
+                            >View all job openings</a
+                        >.
+                    </p>-->
+                </div>
+            </div>
+            <div
+                class="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                <div class="mx-auto max-w-lg lg:max-w-none">
+                    <form
+                        action="#"
+                        method="POST"
+                        class="grid grid-cols-1 gap-y-6">
+                        <div>
+                            <label for="full-name" class="sr-only"
+                                >Nombre</label
+                            >
+                            <input
+                                type="text"
+                                name="full-name"
+                                id="full-name"
+                                autocomplete="name"
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Tu nombre completo" />
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Tu correo electrónico" />
+                        </div>
+                        <div>
+                            <label for="phone" class="sr-only">Telefono</label>
+                            <input
+                                type="text"
+                                name="phone"
+                                id="phone"
+                                autocomplete="tel"
+                                class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Telefono" />
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Mensaje</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                class="block w-full rounded-md border border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                placeholder="Escribe aquí tu mensaje" />
+                        </div>
+                        <div>
+                            <button
+                                type="submit"
+                                class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div
+                class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a
+                        v-for="item in social"
+                        :key="item.name"
+                        :href="item.href"
+                        class="text-gray-400 hover:text-gray-300">
+                        <span class="sr-only">{{ item.name }}</span>
+                        <component
+                            :is="item.icon"
+                            class="h-6 w-6"
+                            aria-hidden="true" />
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
+                    &copy; 2020 Agilitic. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
 </template>
-
-<style scoped>
-    .bg-gray-100 {
-        background-color: #f7fafc;
-        background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
-    }
-
-    .border-gray-200 {
-        border-color: #edf2f7;
-        border-color: rgba(237, 242, 247, var(--tw-border-opacity));
-    }
-
-    .text-gray-400 {
-        color: #cbd5e0;
-        color: rgba(203, 213, 224, var(--tw-text-opacity));
-    }
-
-    .text-gray-500 {
-        color: #a0aec0;
-        color: rgba(160, 174, 192, var(--tw-text-opacity));
-    }
-
-    .text-gray-600 {
-        color: #718096;
-        color: rgba(113, 128, 150, var(--tw-text-opacity));
-    }
-
-    .text-gray-700 {
-        color: #4a5568;
-        color: rgba(74, 85, 104, var(--tw-text-opacity));
-    }
-
-    .text-gray-900 {
-        color: #1a202c;
-        color: rgba(26, 32, 44, var(--tw-text-opacity));
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .dark\:bg-gray-800 {
-            background-color: #2d3748;
-            background-color: rgba(45, 55, 72, var(--tw-bg-opacity));
-        }
-
-        .dark\:bg-gray-900 {
-            background-color: #1a202c;
-            background-color: rgba(26, 32, 44, var(--tw-bg-opacity));
-        }
-
-        .dark\:border-gray-700 {
-            border-color: #4a5568;
-            border-color: rgba(74, 85, 104, var(--tw-border-opacity));
-        }
-
-        .dark\:text-white {
-            color: #fff;
-            color: rgba(255, 255, 255, var(--tw-text-opacity));
-        }
-
-        .dark\:text-gray-400 {
-            color: #cbd5e0;
-            color: rgba(203, 213, 224, var(--tw-text-opacity));
-        }
-    }
-</style>
